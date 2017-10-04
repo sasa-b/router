@@ -5,6 +5,8 @@ Lightweight router inspired by Laravel's and Phalcon's router.
 ```php
 $router = new \Foundation\Routing\Router();
 
+// here we are utilising cache for performance, if the cache file was not found 
+// routes will be registered and the cache file recreated
 $router->cache(function (\Foundation\Routing\Router $r) {
     // if you want to collect routes from a file
     // you can set the path as a paramater to collectRoutes() or via setRoutesPath()
