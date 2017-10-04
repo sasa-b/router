@@ -1,0 +1,45 @@
+# Router
+Lightweight router inspired by Laravel's and Phalcon's router.
+*********
+## Usage examples
+```php
+$router = new \Foundation\Routing\Router();
+
+$router->cache(function (\Foundation\Routing\Router $r) {
+    // if you want to collect routes from a file
+    // you can set the path as a paramater to collectRoutes() or via setRoutesPath()
+    $r->collectRoutes();
+    
+    // you can both collect and and routes one by one, they will merge
+    $r->get('/foo/{bar}', [
+        'controller' => 'FooController',
+        'action' => 'index',
+    ]);
+    
+    $r->post('/foo/{bar}', 'FooController::store');
+
+    $r->get('/foo', function () {
+        echo 'Hello foo!';
+    });
+});
+
+try {
+    // Adding event listeners
+    $router->addEventListener('before_match', function(\Foundation\Routing\Router $router) {
+        echo "before match";
+    });
+
+    $router->addEventListener('after_match', function(\Foundation\Routing\Router $router) {
+        echo "after match";
+    });
+
+    $dispatcher = $router->catch();
+
+    $dispatcher->dispatch();
+
+} catch (\Foundation\Routing\Exceptions\NotFoundException $e) {
+    echo $e->getCode() . " - Page not found";
+} catch (\Foundation\Routing\Exceptions\BadHttpMethodException $e) {
+    echo $e->getCode() . " - Bad Http Method";
+} 
+```
