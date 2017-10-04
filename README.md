@@ -9,10 +9,11 @@ $router = new \Foundation\Routing\Router();
 // routes will be registered and the cache file recreated
 $router->cache(function (\Foundation\Routing\Router $r) {
     // if you want to collect routes from a file
-    // you can set the path as a paramater to collectRoutes() or via setRoutesPath()
+    // you can set the path to the routes file as a paramater to collectRoutes() method
+    // or via setRoutesPath() method
     $r->collectRoutes();
     
-    // you can both collect and and routes one by one, they will merge
+    // you can both collect routes and add them one by one, they will be merged
     $r->get('/foo/{bar}', [
         'controller' => 'FooController',
         'action' => 'index',
