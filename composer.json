@@ -1,4 +1,16 @@
 {
+    "name": "sasa-b/router",
+    "type": "library",
+    "description": "Lightweight and performant router inspired by laravel's, and phalcon's router.",
+    "keywords": ["router", "routing", "dispatcher"],
+    "homepage": "https://sasablagojevic.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sasa Blagojevic",
+            "email": "sasa.blagojevic@mail.com"
+        }
+    ],
     "require": {
         "psr/container": "^1.0"
     }
