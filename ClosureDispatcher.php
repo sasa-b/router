@@ -23,10 +23,10 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
      * @param Closure $handler
      * @param array $params
      */
-    public function __construct(Closure $handler, array $params)
+    public function __construct(Closure $handler = null, array $params = [])
     {
         $this->handler = $handler;
-        $this->params = $params;
+        $this->params = [];
     }
 
     /**

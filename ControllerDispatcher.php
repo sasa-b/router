@@ -27,7 +27,7 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
      * @param string $action
      * @param array $params
      */
-    public function __construct($controller, string $action, array $params)
+    public function __construct($controller = null, string $action = '', array $params = [])
     {
         $this->controller = $controller;
 
