@@ -100,26 +100,32 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
 
     /**
      * @param $controller
+     * @return $this
      */
     public function setController($controller)
     {
         $this->controller = $controller;
+        return $this;
     }
 
     /**
      * @param string $action
+     * @return $this
      */
     public function setAction(string $action)
     {
-
+        $this->action = $action;
+        return $this;
     }
 
     /**
      * @param array $params
+     * @return $this
      */
     public function setParams(array $params)
     {
         $this->params = $params;
+        return $this;
     }
 
     /**
