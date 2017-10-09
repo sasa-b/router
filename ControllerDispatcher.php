@@ -36,10 +36,12 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
      */
     public function dispatch(ContainerInterface $container = null)
     {
-        if ($container) {
-            $controller = is_object($this->controller) ? $this->controller : $container->get($this->controller);
+        $this->beforeDispatch($container);
 
-            $reflection = new \ReflectionClass($controller);
+        if ($container) {
+            $this->controller = is_object($this->controller) ? $this->controller : $container->get($this->controller);
+
+            $reflection = new \ReflectionClass($this->controller);
 
             $params = [];
 
@@ -57,19 +59,50 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
                 }
             }
 
-            try {
-                return call_user_func_array(array($controller, $this->action), $params + $this->params);
-            } catch (\BadMethodCallException $e) {
-                throw $e;
-            }
+            $this->params = $params + $this->params;
         }
 
-        return call_user_func_array(
-            [
-                is_object($this->controller) ? $this->controller : new $this->controller(),
-                $this->action
-            ],
-            $this->params
-        );
+        $called = $this->call($this->controller, $this->action, $this->params);
+
+        $this->afterDispatch($container);
+
+        return $called;
+    }
+
+    /**
+     * @param $class
+     * @param string $method
+     * @param array $params
+     * @return mixed
+     */
+    protected function call($class, string $method, array $params)
+    {
+        try {
+
+            return call_user_func_array(
+                [
+                    is_object($class) ? $class : new $class(),
+                    $method
+                ],
+                $params
+            );
+
+        } catch (\BadMethodCallException $e) {
+            throw $e;
+        }
+    }
+
+    public function beforeDispatch(ContainerInterface $container = null)
+    {
+        if (isset($this->events['after_dispatch'])) {
+            $this->events['after_dispatch']([$this->controller, $this->action, $this->params], $container);
+        }
+    }
+
+    public function afterDispatch(ContainerInterface $container = null)
+    {
+        if (isset($this->events['after_dispatch'])) {
+            $this->events['after_dispatch']([$this->controller, $this->action, $this->params], $container);
+        }
     }
 }

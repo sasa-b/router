@@ -11,5 +11,9 @@ namespace Foundation\Routing;
 
 interface DispatcherInterface
 {
+    public function beforeDispatch();
+
     public function dispatch();
+
+    public function afterDispatch();
 }

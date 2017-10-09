@@ -26,9 +26,30 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
 
     public function dispatch(ContainerInterface $container = null)
     {
+        $this->beforeDispatch($container);
+
         if ($container) {
-             return call_user_func_array($this->handler, [$container] + $this->params);
+             $called = call_user_func_array($this->handler, [$container] + $this->params);
+        } else {
+            $called = call_user_func_array($this->handler, $this->params);
         }
-        return call_user_func_array($this->handler, $this->params);
+
+        $this->afterDispatch($container);
+
+        return $called;
+    }
+
+    public function beforeDispatch(ContainerInterface $container = null)
+    {
+        if (isset($this->events['after_dispatch'])) {
+            $this->events['after_dispatch']($container);
+        }
+    }
+
+    public function afterDispatch(ContainerInterface $container = null)
+    {
+        if (isset($this->events['after_dispatch'])) {
+            $this->events['after_dispatch']($container);
+        }
     }
 }
