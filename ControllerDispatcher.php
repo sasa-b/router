@@ -102,7 +102,7 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
      * @param $controller
      * @return $this
      */
-    public function setController($controller)
+    public function controller($controller)
     {
         $this->controller = $controller;
         return $this;
@@ -112,7 +112,7 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
      * @param string $action
      * @return $this
      */
-    public function setAction(string $action)
+    public function action(string $action)
     {
         $this->action = $action;
         return $this;
@@ -122,7 +122,7 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
      * @param array $params
      * @return $this
      */
-    public function setParams(array $params)
+    public function params(array $params)
     {
         $this->params = $params;
         return $this;

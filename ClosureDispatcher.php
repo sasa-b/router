@@ -52,7 +52,7 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
      * @param callable $handler
      * @return $this
      */
-    public function setHandler(callable $handler)
+    public function handler(callable $handler)
     {
         $this->handler = $handler;
         return $this;
@@ -62,7 +62,7 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
      * @param array $params
      * @return $this
      */
-    public function setParams(array $params)
+    public function params(array $params)
     {
         $this->params = $params;
         return $this;
