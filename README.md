@@ -5,6 +5,10 @@ Lightweight router inspired by Laravel's and Phalcon's router.
 ```php
 $router = new \Foundation\Routing\Router();
 
+$r->get('/foo', function () {
+    echo 'Hello foo!';
+});
+
 // here we are utilising cache for performance, if the cache file was not found 
 // routes will be registered and the cache file recreated
 $router->cache(function (\Foundation\Routing\Router $r) {
@@ -20,10 +24,6 @@ $router->cache(function (\Foundation\Routing\Router $r) {
     ]);
     
     $r->post('/foo/{bar}', 'FooController::store');
-
-    $r->get('/foo', function () {
-        echo 'Hello foo!';
-    });
 });
 
 try {
