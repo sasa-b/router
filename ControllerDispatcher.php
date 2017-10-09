@@ -103,8 +103,8 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
      */
     public function beforeDispatch(ContainerInterface $container = null)
     {
-        if (isset($this->events['after_dispatch'])) {
-            $this->events['after_dispatch']([$this->controller, $this->action, $this->params], $container);
+        if (isset($this->events['before_dispatch'])) {
+            $this->events['before_dispatch']([$this->controller, $this->action, $this->params], $container);
         }
     }
 

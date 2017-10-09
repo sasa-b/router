@@ -53,8 +53,8 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
      */
     public function beforeDispatch(ContainerInterface $container = null)
     {
-        if (isset($this->events['after_dispatch'])) {
-            $this->events['after_dispatch']($container);
+        if (isset($this->events['before_dispatch'])) {
+            $this->events['before_dispatch']($container);
         }
     }
 
