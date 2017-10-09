@@ -6,7 +6,7 @@
  * Time: 7:19 PM
  */
 
-namespace App\src\Routing;
+namespace Foundation\Routing;
 
 
 abstract class Dispatcher

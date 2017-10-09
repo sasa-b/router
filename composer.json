@@ -11,6 +11,11 @@
             "email": "sasa.blagojevic@mail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Foundation\\Routing\\": ""
+        }
+    },
     "require": {
         "psr/container": "^1.0"
     }

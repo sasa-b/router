@@ -12,7 +12,7 @@ namespace Foundation\Routing;
 use Psr\Container\ContainerInterface;
 use Closure;
 
-class ClosureDispatcher implements DispatcherInterface
+class ClosureDispatcher extends Dispatcher implements DispatcherInterface
 {
     protected $params;
 

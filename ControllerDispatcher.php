@@ -12,7 +12,7 @@ namespace Foundation\Routing;
 use Psr\Container\ContainerInterface;
 
 
-class ControllerDispatcher implements DispatcherInterface
+class ControllerDispatcher extends Dispatcher implements DispatcherInterface
 {
 
     protected $controller;
@@ -57,7 +57,6 @@ class ControllerDispatcher implements DispatcherInterface
                 }
             }
 
-            //return $reflection->getMethod($method)->invokeArgs($class_instance, $params);
             try {
                 return call_user_func_array(array($controller, $this->action), $params + $this->params);
             } catch (\BadMethodCallException $e) {
