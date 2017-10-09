@@ -21,6 +21,12 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
 
     protected $params;
 
+    /**
+     * ControllerDispatcher constructor.
+     * @param $controller
+     * @param string $action
+     * @param array $params
+     */
     public function __construct($controller, string $action, array $params)
     {
         $this->controller = $controller;
@@ -92,6 +98,9 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
         }
     }
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function beforeDispatch(ContainerInterface $container = null)
     {
         if (isset($this->events['after_dispatch'])) {
@@ -99,6 +108,9 @@ class ControllerDispatcher extends Dispatcher implements DispatcherInterface
         }
     }
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function afterDispatch(ContainerInterface $container = null)
     {
         if (isset($this->events['after_dispatch'])) {

@@ -18,12 +18,21 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
 
     protected $handler;
 
+    /**
+     * ClosureDispatcher constructor.
+     * @param Closure $handler
+     * @param array $params
+     */
     public function __construct(Closure $handler, array $params)
     {
         $this->handler = $handler;
         $this->params = $params;
     }
 
+    /**
+     * @param ContainerInterface|null $container
+     * @return mixed
+     */
     public function dispatch(ContainerInterface $container = null)
     {
         $this->beforeDispatch($container);
@@ -39,6 +48,9 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
         return $called;
     }
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function beforeDispatch(ContainerInterface $container = null)
     {
         if (isset($this->events['after_dispatch'])) {
@@ -46,6 +58,9 @@ class ClosureDispatcher extends Dispatcher implements DispatcherInterface
         }
     }
 
+    /**
+     * @param ContainerInterface|null $container
+     */
     public function afterDispatch(ContainerInterface $container = null)
     {
         if (isset($this->events['after_dispatch'])) {
